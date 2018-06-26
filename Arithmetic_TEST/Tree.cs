@@ -11,7 +11,7 @@ namespace Arithmetic_TEST
         public BinaryTree<T> LeftChild { get; set; }
         public BinaryTree<T> RightChild { get; set; }
         private T _Value;
-        public T Value { get => _Value; }
+        public T Value { get { return _Value; } }
 
         public BinaryTree(T value)
         {
