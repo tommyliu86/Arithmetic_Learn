@@ -45,7 +45,7 @@ namespace Arithmetic_TEST
         public static BinaryTree<T> CreateBinaryTree(IList<T> list)
         {
             BinaryTree<T> tree = new BinaryTree<T>(list[0]);
-            for (int i = 1; i < list.Count-1; i++)
+            for (int i = 1; i < list.Count; i++)
             {
                 tree.AddNode(list[i]);
             }
@@ -63,11 +63,11 @@ namespace Arithmetic_TEST
             }
             BinaryTree<int> tree = BinaryTree<int>.CreateBinaryTree(list);
             List<int> midlist = tree.MiddleSort();
+            Console.WriteLine("list.count:{0}", midlist.Count);
             Console.WriteLine("前20：{0}", string.Join(",", midlist.Take(20)));
-            List<int> prelist = tree.PreSort();
-            Console.WriteLine("前20：{0}", string.Join(",", prelist.Take(20)));
-            List<int> aftlist = tree.AfterSort();
-            Console.WriteLine("前20：{0}", string.Join(",", aftlist.Take(20)));
+            Console.WriteLine("leafcount:{0}", tree.LeafCount(tree));
+            Console.WriteLine("NodeCount:{0}", tree.NodeCount(tree));
+
             Console.ReadKey();
         }
         public List<T> MiddleSort()
@@ -124,6 +124,34 @@ namespace Arithmetic_TEST
             }
             list.Add(node.Value);
             
+        }
+        public int LeafCount(BinaryTree<T> node)
+        {
+            if (node==null)
+            {
+                return 0;
+            }
+            else if(node.LeftChild==null&&node.RightChild==null
+                )
+            {
+                return 1;
+            }
+            else
+            {
+                return LeafCount(node.LeftChild) + LeafCount(node.RightChild);
+            }
+        }
+        public int NodeCount(BinaryTree<T> node)
+        {
+            if (node==null)
+            {
+                return 0;
+
+            }
+            else
+            {
+                return NodeCount(node.LeftChild) + NodeCount(node.RightChild) + 1;
+            }
         }
     }
 }
