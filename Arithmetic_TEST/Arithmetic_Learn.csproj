@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Direct_Insert.cs" />
     <Compile Include="heap_Sort_binaryTree.cs" />
+    <Compile Include="MergeSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quick_Sort.cs" />

@@ -17,6 +17,8 @@ namespace Arithmetic_TEST
             //Shell_Sort.Test();
             BinaryTree<int>.Test();
             //Mergesort.Main_Test();
+            System.Collections.Generic.LinkedList<int> linkedList = new LinkedList<int>();
+           
         }
     }
 } 
