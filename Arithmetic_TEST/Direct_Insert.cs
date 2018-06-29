@@ -15,19 +15,45 @@ namespace Arithmetic_TEST
             第五张牌又是3，狂喜，哈哈，一门炮就这样产生了。
             在该过程中主要涉及到所有的大于当前数的数都需要做向右的偏移，也就是插入的话需要移位！
              */
+             /// <summary>
+             /// 在第一次循环中保存当前的未排序的值，在内层循环中进行直接赋值，不创建temp，这应该算是较为优化的方法，性能会比较好
+             /// </summary>
+             /// <typeparam name="T"></typeparam>
+             /// <param name="list"></param>
         public static void DirectInsert<T>(this IList<T> list) where T:IComparable<T>
         {
             for (int i = 1; i < list.Count; i++)
             {
                 var temp = list[i];
                 int j;
-                for ( j = i-1; j >=0&&list[j].CompareTo(temp)>0; j--)
+                for ( j = i; j >0&&list[j-1].CompareTo(temp)>0; j--)
                 {
                    
-                        list[j + 1] = list[j];
+                        list[j ] = list[j-1];
                     
                 }
-                list[j+1] = temp;
+                list[j] = temp;
+            }
+        }
+        /// <summary>
+        /// 每次循环都创建一个temp，会对性能产生影响。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        public static void DirectInsert_2<T>(this IList<T> list) where T : IComparable<T>
+        {
+            for (int i = 1; i < list.Count; i++)
+            {
+
+               
+                for ( int j = i ; j > 0 && list[j].CompareTo(list[j-1]) < 0; j--)
+                {
+                    var temp = list[j];
+                    list[j ] = list[j-1];
+                    list[j - 1] = temp;
+
+                }
+                
             }
         }
         public static void DirectInsert_1<T>(this IList<T> list) where T : IComparable<T>
@@ -91,7 +117,7 @@ namespace Arithmetic_TEST
                     list1.Add(random.Next(0, 100000));
                 }
                 watch.Start();
-                list1.DirectInsert_1();
+                list1.DirectInsert_2();
                 watch.Stop();
                 Console.WriteLine("直接插入排序_1结束");
 

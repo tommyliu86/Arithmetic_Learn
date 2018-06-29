@@ -15,9 +15,10 @@ namespace Arithmetic_TEST
             //Quick_Sort.Test();
             //Select_Sort.Test();
             //Shell_Sort.Test();
-            BinaryTree<int>.Test();
+            //BinaryTree<int>.Test();
             //Mergesort.Main_Test();
-            System.Collections.Generic.LinkedList<int> linkedList = new LinkedList<int>();
+            Direct_Insert.Test();
+            Console.ReadKey();
            
         }
     }
