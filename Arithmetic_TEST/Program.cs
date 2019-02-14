@@ -17,9 +17,10 @@ namespace Arithmetic_TEST
             //Shell_Sort.Test();
             //BinaryTree<int>.Test();
             //Mergesort.Main_Test();
-            Direct_Insert.Test();
+            //Direct_Insert.Test();
+        
+            StepAlgorithm.test();
             Console.ReadKey();
-           
         }
     }
 } 
